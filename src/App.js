@@ -10,38 +10,39 @@ class App extends React.Component {
     super(props);
     this.state = {
       instrument: '',
-      chords: chordData[Math.floor(Math.random() * (chordData.length - 1))],
-      words: [wordData[Math.floor(Math.random() * 370000)],
-      wordData[Math.floor(Math.random() * 370000)],
-      wordData[Math.floor(Math.random() * 370000)]
-      ]};
+      chords:'',
+      words: []};
   }
 
 
-  selectInstrument() {
-    if (this.state.instrument === ''){
-      const instruments = ['guitar', 'ukulele'];
-      let selectNum = Math.floor(Math.random() * 2);
-      let selectedInstrument = instruments[selectNum];
-      this.setState({
-        instrument: selectedInstrument
-      });
+  createState = () => {
+    const randNum = (num) => {
+      return Math.floor(Math.random() * num)
     }
+    const instruments = ['guitar', 'ukulele'];
+    const newInstrument = instruments[randNum(2)];
+    const newWords = [wordData[randNum(wordData.length)]];
+    const newChords = chordData[randNum(chordData.length)];
 
+    this.setState({
+      instrument: newInstrument,
+      chords: newChords,
+      words: newWords
+    });
   }
 
   render() {
-    console.log(this.state)
-    this.selectInstrument();
 
     return (
       <div>
         <h1>Generate a song!</h1>
         <h2>{this.state.instrument}</h2>
         <h2>{this.state.chords}</h2>
-        <h2>{this.state.words}</h2>
+        {this.state.words.map(function(word, index){
+          return <h2 key={ index }>{word}</h2>;
+        })}
 
-        <button>Click Here</button>
+        <button onClick={this.createState}>Click Here</button>
       </div>
     );
   }
