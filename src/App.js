@@ -1,22 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import Words from './components/Words/Words';
+import Chords from './components/Chords/Chords';
+import Instrument from './components/Instrument/Instrument';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>
+          Generate a Song
+        </h1>
+        <Instrument/>
+        <Chords />
+        <Words />
+        <button>
+          Click Here
+        </button>
       </header>
     </div>
   );
